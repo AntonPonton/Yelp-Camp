@@ -40,6 +40,12 @@ module.exports.createCampground = async (req, res, next) => {
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
+module.exports.showOnMap = async (req, res, next) => {
+  const campgrounds = await Campground.find({});
+
+  res.render("campgrounds/map", { campgrounds });
+};
+
 module.exports.showCampground = async (req, res, next) => {
   const campground = await Campground.findById(req.params.id)
     .populate({

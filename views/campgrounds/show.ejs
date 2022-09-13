@@ -52,8 +52,14 @@
         width="12"
         height="12"
       />
-        <div class="d-inline">4.2</div><br>
-        </div>
+          <!-- If no ratings display n/a  else display rating-->
+          <% if (campground.rating === 0){ %>
+          <p class="d-inline">n/a</p>
+          <% } else { %>
+          <div class="d-inline"><%= campground.rating %></div>
+          <br />
+          <% } %>
+          </div>
         </div>
         <!-- Description -->
         <p class="card-text"><%= campground.description %></p>

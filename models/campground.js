@@ -41,6 +41,10 @@ const CampgroundSchema = new Schema(
         ref: "Review",
       },
     ],
+    rating: {
+      type: Number,
+      default: 0,
+    },
   },
   opts
 );

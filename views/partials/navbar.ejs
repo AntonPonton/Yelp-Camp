@@ -1,7 +1,14 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-light">
   <div class="container-fluid">
     <!-- Logo -->
-    <a class="navbar-brand" href="#">YelpCamp</a>
+    <a class="navbar-brand" style="color: yellow" href="/">
+      <img
+        src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662219472/YelpCamp/add-svgrepo-com_ifbpuk.svg"
+        alt=""
+        width="48"
+        height="48"
+      />
+    </a>
     <!-- Hamburger for smaller screen sizes -->
     <button
       class="navbar-toggler"
@@ -17,9 +24,6 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
         <!-- View Campgrounds -->
         <li class="nav-item">
           <a class="nav-link" href="/campgrounds">View campgrounds</a>
@@ -29,6 +33,7 @@
           <a class="nav-link" href="/campgrounds/new">Add Campground</a>
         </li>
       </ul>
+      </div>
 
       <ul class="navbar-nav ms-auto">
         <% if(!currentUser) { %>

@@ -92,7 +92,7 @@
       </div>
       <% } %>
       <!-- Footer -->
-      <div class="card-footer text-muted">2 days ago</div>
+      <div class="card-footer text-muted">Created at: <%= campground.updatedAt.toDateString() %> </div>
   </div>
   </div>
   <div class="col">
@@ -192,7 +192,7 @@
               <!--Author -->
               <b><h6 class="d-inline mb-2">
               <%= review.author.username %>
-              </h6></b><p class="d-inline text-muted">- March 6, 2022</p>
+              </h6></b><p class="d-inline text-muted">- <%= review.updatedAt.toDateString() %></p>
               <!-- Rating -->
               <p class="d-inline float-end starability-result" data-rating="<%= review.rating %>">
               Rated: <%= review.rating %> stars
@@ -200,8 +200,6 @@
             </div>
             <!-- Review text -->
             <p class="card-text">Review:<%= review.body %></p>
-            <!-- Time stamp ?-->
-
             <!-- If author show delete button -->
             <% if(currentUser && review.author.equals(currentUser._id)) {%>
             <form

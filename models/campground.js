@@ -46,6 +46,10 @@ const CampgroundSchema = new Schema(
       default: 0,
     },
   },
+  {
+    // if timestamps are set to true, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
+    timestamps: true,
+  },
   opts
 );
 

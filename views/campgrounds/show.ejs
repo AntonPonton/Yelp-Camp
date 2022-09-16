@@ -54,7 +54,7 @@
       />
           <!-- If no ratings display n/a  else display rating-->
           <% if (campground.rating === 0){ %>
-          <p class="d-inline">n/a</p>
+          <p class="d-inline">new</p>
           <% } else { %>
           <div class="d-inline"><%= campground.rating %></div>
           <br />
@@ -66,28 +66,52 @@
       </div>
       <ul class="list-group list-group-flush">
         <!-- Location -->
-        <li class="list-group-item text-muted"><%= campground.location %></li>
+        <li class="list-group-item">
+          <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill me-1" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+          </svg>
+          <%= campground.location %>
+        </li>
         <!-- Owner -->
-        <li class="list-group-item">Owner: <%= campground.author.username %></li>
+
+        <li class="list-group-item">
+        <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle me-1" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>  
+        <%= campground.author.username %> - owner</li>
         <!-- Price -->
-        <li class="list-group-item">$ <%= campground.price %> / per night</li>
+        <li class="list-group-item">
+          <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro me-1" viewBox="0 0 16 16">
+            <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+          </svg>
+          <%= campground.price %> / per night
+        </li>
       </ul>
       <!-- Edit and Delete for Owners -->
       <% if(currentUser && campground.author.equals(currentUser._id)) {%>
       <div class="card-body">
         <!-- Edit -->
         <a
-          class="card-link btn btn-info"
+          class="card-link btn btn-light px-3"
           href="/campgrounds/<%=campground._id%>/edit "
-          >Edit</a
+          >Edit
+          <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil ms-2" viewBox="0 0 16 16">
+  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+</svg></a
         >
         <form
-          class="d-inline"
+          class="d-inline mx-1"
           action="/campgrounds/<%= campground._id %>?_method=DELETE"
           method="POST"
         >
         <!-- Delete -->
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-light px-3">
+            Delete
+            <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 ms-2" viewBox="0 0 16 16">
+              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+            </svg>
+          </button>
         </form>
       </div>
       <% } %>
@@ -96,6 +120,9 @@
   </div>
   </div>
   <div class="col">
+
+
+
 
     <!-- Right Coulmn -->
 
@@ -180,7 +207,12 @@
             <div class="valid-feedback">Looks good!</div>
           
           
-          <button class="btn btn-success">Submit</button>
+          <button class="btn btn-light shadow-sm">
+            Submit
+            <svg style="vertical-align: -0.2em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send ms-1" viewBox="0 0 16 16">
+              <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+            </svg>
+          </button>
         </form>
         <!-- Displaing all reviews -->
         </div>
@@ -190,6 +222,9 @@
           <div class="card-body">
             <div class="card-title">
               <!--Author -->
+              <svg style="vertical-align: -0.2em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+              </svg>
               <b><h6 class="d-inline mb-2">
               <%= review.author.username %>
               </h6></b><p class="d-inline text-muted">- <%= review.updatedAt.toDateString() %></p>
@@ -206,7 +241,12 @@
               action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
               method="POST"
             >
-              <button class="btn btn-sm btn-danger">Delete</button>
+              <button class="btn btn-sm btn-light shadow-sm">
+                Delete
+                <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 ms-2" viewBox="0 0 16 16">
+                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                </svg>
+              </button>
               <% } %>
             </form>
           </div>

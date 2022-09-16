@@ -9,8 +9,8 @@
   object-fit: cover;
 }
 
-.scrollable {
-  z-index: -1;
+.on-top {
+  z-index: 2000;
 }
 
 .search-box {

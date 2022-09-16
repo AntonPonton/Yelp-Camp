@@ -27,15 +27,17 @@
 
 .round-search-btn {
   height: 38px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-right: -19px;
-  background-color: #ffc107;
+  background-color: rgb(235, 235, 235);
   border-radius: 20px;
   border: solid #adb5bd;
   display: flex;
   align-items: center;
 }
 .round-search-btn:hover {
-  background-color: #ffcf3d;
+  background-color: rgb(190, 190, 190);
   border: solid #adb5bd;
 }
 
@@ -58,4 +60,10 @@
   margin-left: -5px;
   font-size: 20px;
   color: #777;
+}
+
+@media (min-width: 960px) {
+  .new-campground-form {
+    width: 32rem !important;
+  }
 }

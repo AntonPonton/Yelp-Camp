@@ -1,15 +1,17 @@
 <% layout("layouts/boilerplate")%>
 <div class="container d-flex justify-content-center align-items-center mt-5">
   <div class="row">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-      <div class="card shadow">
+    <div>
+      <div class="card shadow" style="width: 22rem">
         <img
-          src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+          src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662219472/YelpCamp/add-svgrepo-com_ifbpuk.svg"
           alt=""
-          class="card-img-top"
+          width="84"
+          height="84"
+          class="card-img-top mt-5 mb-3"
         />
         <div class="card-body">
-          <h5 class="card-title">Register</h5>
+          <h5 class="card-title text-center">Register</h5>
           <form
             action="/register"
             method="POST"
@@ -50,7 +52,21 @@
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
-            <button class="btn btn-success btn-block">Register</button>
+            <div class="d-grid">
+              <button
+                class="btn btn-light btn-block mb-3 border border-light shadow-sm"
+              >
+                Create Account
+              </button>
+            </div>
+            <div class="text-center text-black-50 mt-2">
+              <p>
+                <small
+                  >Already have an account? Login
+                  <a class="link-secondary" href="/login">here</a>!</small
+                >
+              </p>
+            </div>
           </form>
         </div>
       </div>

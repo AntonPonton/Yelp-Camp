@@ -18,7 +18,6 @@ router
     validateCampground,
     catchAsync(campgrounds.createCampground)
   );
-
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 
 router.get("/map", campgrounds.showOnMap);

@@ -12,3 +12,50 @@
 .scrollable {
   z-index: -1;
 }
+
+.search-box {
+  width: 400px;
+  height: 40px;
+  background-color: white;
+  border-radius: 20px;
+  border: solid #adb5bd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.round-search-btn {
+  height: 38px;
+  margin-right: -19px;
+  background-color: #ffc107;
+  border-radius: 20px;
+  border: solid #adb5bd;
+  display: flex;
+  align-items: center;
+}
+.round-search-btn:hover {
+  background-color: #ffcf3d;
+  border: solid #adb5bd;
+}
+
+.search-input {
+  height: 38px;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  align-items: center;
+}
+
+.search-input[type="search"]:focus {
+  background-color: none;
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+
+.search-box > svg {
+  margin-left: -5px;
+  font-size: 20px;
+  color: #777;
+}

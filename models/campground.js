@@ -15,7 +15,7 @@ ImageSchema.virtual("preview").get(function () {
   return this.url.replace("/upload", "/upload/w_100");
 });
 
-const opts = { toJSON: { virtuals: true } };
+const opts = { toJSON: { virtuals: true }, timestamps: true };
 
 const CampgroundSchema = new Schema(
   {
@@ -50,16 +50,21 @@ const CampgroundSchema = new Schema(
       default: 0,
     },
   },
-  {
-    // if timestamps are set to true, mongoose assigns createdAt and updatedAt fields to your schema, the type assigned is Date.
-    timestamps: true,
-  },
   opts
 );
 
+/* `<img src="${this.images[0].url}" class="pop-up-image"/>
+<a href="/campgrounds/${this._id}" class="link-dark">${this.title}</a>*/
 CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
-  return `<img src="${this.images[0].url}" class="pop-up-image"/>
-    <a href="/campgrounds/${this._id}">${this.title}</a>`;
+  return `
+<div class="card text-center border-0" style="width: 10rem;">
+<a href="/campgrounds/${this._id}" class="link-dark">
+<img src="${this.images[0].url}" class="pop-up-image"/>
+</a>
+<p class="card-title mt-2"><strong>${this.title}</strong></p>
+<p class="card-title"><small>${this.price} CHF / per night</small></p>
+</div>
+`;
 });
 
 CampgroundSchema.post("findOneAndDelete", async function (doc) {

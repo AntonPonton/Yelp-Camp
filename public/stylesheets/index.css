@@ -14,7 +14,13 @@
 }
 
 .search-box {
-  width: 400px;
+  position: absolute;
+  z-index: 3000;
+  width: 300px;
+  left: 0;
+  right: 0;
+  top: 13px;
+  margin: auto;
   height: 40px;
   background-color: white;
   border-radius: 20px;
@@ -62,8 +68,21 @@
   color: #777;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 992px) {
   .new-campground-form {
     width: 32rem !important;
+  }
+  .search-box {
+    position: absolute;
+    z-index: 3000;
+    width: 450px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid #adb5bd;
+    padding: 20px;
   }
 }

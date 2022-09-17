@@ -26,14 +26,26 @@
       <ul class="navbar-nav">
         <!-- All Campgrounds -->
         <li class="nav-item">
-          <a class="nav-link" href="/campgrounds">All campgrounds</a>
+          <a class="nav-link" href="/campgrounds">All Camps</a>
         </li>
         <!-- Add Campground Link-->
         <li class="nav-item">
-          <a class="nav-link" href="/campgrounds/new">Add Campground</a>
+          <a class="nav-link" href="/campgrounds/new">Add Camp</a>
         </li>
       </ul>
-
+      <!-- Login / Register -->
+      <ul class="navbar-nav ms-auto">
+        <% if(!currentUser) { %>
+        <a class="nav-link" href="/login">Login</a>
+        <a
+          class="nav-link rounded-pill border border-warning border-2"
+          href="/register"
+          >Register</a
+        >
+        <% }else { %>
+        <a class="nav-link" href="/logout">Logout</a>
+        <% } %>
+      </ul>
       <!-- Search Bar -->
       <div class="search-box mx-auto shadow-sm">
         <svg
@@ -56,6 +68,7 @@
             id="searchBar"
             class="search-input form-control d-flex flex-grow-1"
             data-search
+            autocomplete="off"
           />
 
           <input
@@ -65,20 +78,6 @@
           />
         </form>
       </div>
-
-      <!-- Login / Register -->
-      <ul class="navbar-nav ms-auto">
-        <% if(!currentUser) { %>
-        <a class="nav-link" href="/login">Login</a>
-        <a
-          class="nav-link rounded-pill border border-warning border-2"
-          href="/register"
-          >Register</a
-        >
-        <% }else { %>
-        <a class="nav-link" href="/logout">Logout</a>
-        <% } %>
-      </ul>
     </div>
   </div>
 </nav>

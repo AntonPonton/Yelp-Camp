@@ -1,3 +1,8 @@
+:root {
+  --btn-background-color-light: #00000008;
+  --btn-background-color-dark: #dee2e6;
+  --btn-border-color: #ced4da;
+}
 .square {
   aspect-ratio: 1 / 1;
   width: 100%;
@@ -24,7 +29,7 @@
   height: 40px;
   background-color: white;
   border-radius: 20px;
-  border: solid #adb5bd;
+  border: 1px solid var(--btn-border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,15 +41,15 @@
   padding-left: 20px;
   padding-right: 20px;
   margin-right: -19px;
-  background-color: rgb(235, 235, 235);
+  background-color: var(--btn-background-color-light);
   border-radius: 20px;
-  border: solid #adb5bd;
+  border: 1px solid var(--btn-background-color-light);
   display: flex;
   align-items: center;
 }
 .round-search-btn:hover {
-  background-color: rgb(190, 190, 190);
-  border: solid #adb5bd;
+  background-color: var(--btn-background-color-dark);
+  border: 1px solid var(--btn-border-color);
 }
 
 .search-input {
@@ -65,10 +70,36 @@
 .search-box > svg {
   margin-left: -5px;
   font-size: 20px;
-  color: #777;
+  color: gray;
+}
+
+.btn-gray {
+  background-color: var(--btn-background-color-light) !important;
+  border: 1px solid var(--btn-border-color) !important;
+}
+
+.btn-gray:hover {
+  background-color: var(--btn-background-color-dark) !important;
+  border: 1px solid var(--btn-border-color) !important;
+}
+
+.main-card {
+  border: none;
 }
 
 @media (min-width: 992px) {
+  .register-btn {
+    background-color: #ffc107;
+    border: solid #ffc107 2px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .register-btn:hover {
+    background-color: #ffc107;
+  }
+
   .new-campground-form {
     width: 32rem !important;
   }
@@ -82,7 +113,7 @@
     height: 40px;
     background-color: white;
     border-radius: 20px;
-    border: solid #adb5bd;
+    border: 1px solid var(--btn-border-color);
     padding: 20px;
   }
 }

@@ -50,6 +50,10 @@ const CampgroundSchema = new Schema(
       type: Number,
       default: 0,
     },
+    winner: {
+      type: Boolean,
+      default: false,
+    },
   },
   opts
 );
@@ -95,22 +99,6 @@ CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
   return result;
 });
 
-/*
-
-
-
-CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
-  return `
-<div class="card text-center border-0" style="width: 10rem;">
-<a href="/campgrounds/${this._id}" class="link-dark">
-<img src="${this.images[0].url}" class="pop-up-image"/>
-</a>
-<p class="card-title mt-2"><strong>${this.title}</strong></p>
-<p class="card-title"><small>${this.price} CHF / per night</small></p>
-</div>
-`;
-});
-*/
 CampgroundSchema.post("findOneAndDelete", async function (doc) {
   if (doc) {
     await Review.deleteMany({

@@ -69,18 +69,20 @@
         <h5 class="d-inline card-title"><%= campground.title %></h5>
         <!-- Rating -->
         <div class="d-inline float-end">
-      <img
-        class="d-inline align-baseline"
-        src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662231684/YelpCamp/star-svgrepo-com_gxflaa.svg"
-        alt=""
-        width="12"
-        height="12"
-      />
+        <img
+          class="d-inline align-baseline"
+          src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662231684/YelpCamp/star-svgrepo-com_gxflaa.svg"
+          alt=""
+          width="12"
+          height="12"
+        />
           <!-- If no ratings display new  else display rating-->
           <% if (campground.rating === 0){ %>
           <p class="d-inline">new</p>
           <% } else { %>
           <div class="d-inline"><%= campground.rating %></div>
+          <div class="d-inline text-muted fw-light">&bull; <%= campground.reviews.length %> reviews</div>
+
           <br />
           <% } %>
           </div>
@@ -109,7 +111,7 @@
           <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro me-1" viewBox="0 0 16 16">
             <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
           </svg>
-          <%= campground.price %> / per night
+          <%= campground.price %> CHF / per night
         </li>
       </ul>
       <!-- Edit and Delete for Owners -->
@@ -117,7 +119,7 @@
       <div class="card-body">
         <!-- Edit -->
         <a
-          class="card-link btn btn-light px-3"
+          class="card-link btn btn-light px-3 btn-gray"
           href="/campgrounds/<%=campground._id%>/edit "
           >Edit
           <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil ms-2" viewBox="0 0 16 16">
@@ -130,7 +132,7 @@
           method="POST"
         >
         <!-- Delete -->
-          <button class="btn btn-light px-3">
+          <button class="btn btn-light px-3 btn-gray">
             Delete
             <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 ms-2" viewBox="0 0 16 16">
               <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
@@ -149,17 +151,200 @@
 
 
     <!-- Right Coulmn -->
+    <div style="border: none;" class="card mb-3">
+      <div class="row row-cols-1 row-cols-xl-2 g-3 mb-3">
+        <!-- Left -->
+        <div class="col col-xl-6">
+          <div class="card h-100">
+            <div class="card-body">
 
-    <!-- Map -->
-    <div class="card mb-3">
-      <div id="map"></div>
-    </div>
+              <!-- Price and Rating -->
+              <div class="mb-3">
+                <p class="d-inline card-text"><%= campground.price %> CHF / night</p>
+                <div class="d-inline float-end">
+                  <img
+                    class="d-inline align-baseline"
+                    src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662231684/YelpCamp/star-svgrepo-com_gxflaa.svg"
+                    alt=""
+                    width="12"
+                    height="12"
+                  />
+                  <!-- If no ratings display new  else display rating-->
+                  <% if (campground.rating === 0){ %>
+                  <p class="d-inline">new</p>
+                  <% } else { %>
+                  <div class="d-inline"><%= campground.rating %></div>
+                  <div class="d-inline text-muted fw-light">
+                    &bull; <%= campground.reviews.length %> reviews
+                  </div>
+                  <br />
+                  <% } %>
+                </div>
+              </div>
+
+              <!-- Date -->
+              <div class="card mb-3">
+                <div class="d-inline">
+                  <div class="form-floating border-bottom">
+                    <input
+                      id="startDate"
+                      class="form-control"
+                      id="floatingInputGrid"
+                      type="date"
+                      style="border: none; font-size: small"
+                    />
+                    <label for="floatingInputGrid">Check In</label>
+                    <span id="startDateSelected"></span>
+                  </div>
+                </div>
+                <div class="d-inline">
+                  <div class="form-floating">
+                    <input
+                      id="endDate"
+                      class="form-control"
+                      id="floatingInputGrid"
+                      type="date"
+                      style="border: none; font-size: small"
+                    />
+                    <label for="floatingInputGrid">Check Out</label>
+                    <span id="endDateSelected"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Guest -->
+                <div class="form-floating mb-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    id="floatingInputGrid"
+                  >
+                  <option selected>1 Guest</option>
+                  <option value="1">1 Guests</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="5">5 Guests</option>
+                  </select>
+                  <label for="floatingInputGrid">Guests</label>
+                </div>
+
+              <!-- Cancelatin policy
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex flex-column justify-content-end">
+                      <div class="form-check">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault1"
+                        />
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Non-refundable
+                          <p class="fw-light text-black-50 mb-1">
+                            <small>no cancellation possible</small>
+                          </p>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault2"
+                        checked
+                        />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Refundable
+                          <p class="fw-light text-black-50 mb-0">
+                            <small>cancellation one week before</small>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              -->
+
+              <!-- Book now modal -->
+                <div class="d-grid">
+                  <button
+                    style="color: white; font-weight: bolder"
+                    type="button"
+                    class="btn btn-warning btn-block mb-2 shadow-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                  Book now!
+                  </button>
+                  <div class="text-center text-black-50">
+                    <p class="mb-0">
+                      <small>You won't be charged yet!</small>
+                    </p>
+                  </div>
+                </div>
+
+              <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content d-flex justify-content-center">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">
+                          <%= campground.title %>
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                      Unfortunately there are no places available at this time
+                      </div>
+                      <div class="modal-footer">
+                        <a href="/campgrounds">
+                          <button type="button" class="btn btn-warning">
+                          View other campgrounds
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Right -->
+        <div class="col col-xl-6">
+          <div class="card mb-3 h-100">
+            <div style="min-height: 200px;" id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div> 
+ 
+      <!-- Map 
+        <div class="card mb-3">
+          <div id="map"></div>
+        </div>
+      </div>
+    x-->
         <!-- Reviews -->
         
         <!-- Leave Review if logged in-->
         <% if(currentUser){ %>
         <div class=" mb-3">
-         <!-- <div class="card-header">Leave a Review</div> -->
 
         <!-- Leave Reaview-->
           <div class="d-inline card-body">
@@ -231,16 +416,34 @@
             <div class="valid-feedback">Looks good!</div>
           
           
-          <button class="btn btn-light shadow-sm">
+          <button class="btn btn-light shadow-sm btn-gray">
             Submit
             <svg style="vertical-align: -0.2em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send ms-1" viewBox="0 0 16 16">
               <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
             </svg>
           </button>
         </form>
-        <!-- Displaing all reviews -->
+      </div>
+<% } %>
+
+      <!-- If no reviews display Info Box -->
+      <% if (campground.reviews.length == 0 && !currentUser) { %>
+        <div class="card"> 
+          <div class="card-body">
+            <div class="d-inline" style="vertical-align: -0.2em;">
+              <svg style="vertical-align: -0.15em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+              </svg>
+              <p class="d-inline">There are no reviews yet</p>
+              <p class="d-inline text-muted"> - be the first one!</p>
+            </div>
+              <a style="text-decoration: none;" class="d-inline float-end link-secondary btn btn-sm btn-light shadow-sm" href="/login"><b>Sign in</b></a>
+          </div>
         </div>
-        <% } %> <% for (let review of campground.reviews){ %>
+      <% } %>  
+      <!-- Displaing all reviews -->
+         <% for (let review of campground.reviews){ %>
         <div class="card mb-3">
           <!-- Review -->
           <div class="card-body">
@@ -251,21 +454,21 @@
               </svg>
               <b><h6 class="d-inline mb-2">
               <%= review.author.username %>
-              </h6></b><p class="d-inline text-muted">- <%= review.updatedAt.toDateString() %></p>
+              </h6></b><p class="d-inline text-muted fw-light">- <%= review.updatedAt.toDateString() %></p>
               <!-- Rating -->
               <p class="d-inline float-end starability-result" data-rating="<%= review.rating %>">
               Rated: <%= review.rating %> stars
               </p>
             </div>
             <!-- Review text -->
-            <p class="card-text">Review:<%= review.body %></p>
+            <p class="card-text">Review: <%= review.body %></p>
             <!-- If author show delete button -->
             <% if(currentUser && review.author.equals(currentUser._id)) {%>
             <form
               action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
               method="POST"
             >
-              <button class="btn btn-sm btn-light shadow-sm">
+              <button class="btn btn-sm btn-light shadow-sm btn-gray">
                 Delete
                 <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 ms-2" viewBox="0 0 16 16">
                   <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>

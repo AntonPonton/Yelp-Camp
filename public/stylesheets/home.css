@@ -1,11 +1,15 @@
 body {
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.3)
+    ),
     url("https://res.cloudinary.com/dbkdxsoia/image/upload/v1663156686/YelpCamp/AntonPonton_National_Geography_photo_of_outdoor_campground_with_e06e2d41-a412-43af-ab78-fc574d52b950_retouch_m8eh8u.png");
   background-size: cover;
   background-position: bottom;
   text-align: center;
-  text-shadow: 0 0.05rem 0.1rem rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0.05rem 0.1rem rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 0 5rem rgba(255, 255, 255, 0.2);
 }
 
@@ -25,11 +29,17 @@ footer {
 }
 
 .btn-secondary {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #ffc107;
+  border: none;
   color: white;
   font-weight: bold;
   text-shadow: none;
 }
 .btn-secondary:hover {
   background-color: #ffc107;
+}
+
+.antoni {
+  text-decoration: none !important;
+  color: rgba(255, 255, 255, 0.5) !important;
 }

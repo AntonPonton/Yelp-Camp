@@ -98,6 +98,7 @@
 
   .register-btn:hover {
     background-color: #ffc107;
+    color: white;
   }
 
   .new-campground-form {

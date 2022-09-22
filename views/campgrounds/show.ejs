@@ -115,7 +115,7 @@
         </li>
       </ul>
       <!-- Edit and Delete for Owners -->
-      <% if(currentUser && campground.author.equals(currentUser._id)) {%>
+      <% if(currentUser && campground.author.equals(currentUser._id) || currentUser && currentUser.admin) {%>
       <div class="card-body">
         <!-- Edit -->
         <a
@@ -494,7 +494,7 @@
   let tomorrow = new Date()
   tomorrow.setDate(tomorrow.getDate() + 1);
   document.getElementById('endDate').valueAsDate =  tomorrow;
-  
+
   const mapToken = `<%-process.env.MAPBOX_TOKEN%>`;
   const campground = <%- JSON.stringify(campground) %>;
 </script>

@@ -216,15 +216,6 @@ module.exports = [
     state: "Massachusetts",
   },
   {
-    city: "Nashville-Davidson",
-    growth_from_2000_to_2013: "16.2%",
-    latitude: 36.1626638,
-    longitude: -86.7816016,
-    population: "634464",
-    rank: "25",
-    state: "Tennessee",
-  },
-  {
     city: "Baltimore",
     growth_from_2000_to_2013: "-4.0%",
     latitude: 39.2903848,
@@ -241,15 +232,6 @@ module.exports = [
     population: "610613",
     rank: "27",
     state: "Oklahoma",
-  },
-  {
-    city: "Louisville/Jefferson County",
-    growth_from_2000_to_2013: "10.0%",
-    latitude: 38.2526647,
-    longitude: -85.7584557,
-    population: "609893",
-    rank: "28",
-    state: "Kentucky",
   },
   {
     city: "Portland",
@@ -765,15 +747,6 @@ module.exports = [
     state: "California",
   },
   {
-    city: "Winston-Salem",
-    growth_from_2000_to_2013: "16.9%",
-    latitude: 36.09985959999999,
-    longitude: -80.244216,
-    population: "236441",
-    rank: "86",
-    state: "North Carolina",
-  },
-  {
     city: "Glendale",
     growth_from_2000_to_2013: "5.7%",
     latitude: 33.5386523,
@@ -1060,15 +1033,6 @@ module.exports = [
     population: "197357",
     rank: "118",
     state: "Arkansas",
-  },
-  {
-    city: "Augusta-Richmond County",
-    growth_from_2000_to_2013: "1.1%",
-    latitude: 33.4734978,
-    longitude: -82.0105148,
-    population: "197350",
-    rank: "119",
-    state: "Georgia",
   },
   {
     city: "Amarillo",

@@ -19,9 +19,11 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 6; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
     const randomPrice = Math.floor(Math.random() * 50);
+    const randomTag = Math.floor(Math.random() * 6);
+    tagsArr = ["dune", "sea", "forest", "jungle", "mountain", "space"];
     const camp = new Campground({
       //YOUR USER ID
       author: "630e12aec3800505415468e3",
@@ -47,6 +49,7 @@ const seedDB = async () => {
           filename: "suaobjjwtyiymtq36jkv",
         },
       ],
+      tag: tagsArr[randomTag],
     });
     await camp.save();
   }

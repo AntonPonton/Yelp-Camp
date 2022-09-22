@@ -54,6 +54,7 @@ const CampgroundSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    tag: String,
   },
   opts
 );

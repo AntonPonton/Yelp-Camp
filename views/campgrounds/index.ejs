@@ -6,11 +6,11 @@
 >
   <% for (let campground of campgrounds) { %>
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 border-0">
       <!-- If no images diaply sad icon -->
       <% if (campground.images.length === 0){ %>
       <div
-        class="bg-light card-img-top square img-fluid d-flex flex-column align-items-center justify-content-center"
+        class="bg-light card-img-top square rounded-3 img-fluid d-flex flex-column align-items-center justify-content-center"
       >
         <a href="/campgrounds/<%=campground._id%>">
           <svg
@@ -35,18 +35,18 @@
       <a href="/campgrounds/<%=campground._id%>">
         <img
           src="<%= campground.images[0].url %>"
-          class="card-img-top square img-fluid"
+          class="card-img-top square img-fluid rounded-3"
           alt="..."
         />
       </a>
       <% } %>
-      <div class="card-body">
+      <div class="card-body px-0">
         <!-- Title -->
-        <h5 class="d-inline card-title"><%= campground.title %></h5>
+        <h5 class="d-inline card-title fs-5"><%= campground.title %></h5>
         <!-- Rating -->
-        <div class="d-inline float-end">
+        <div class="d-inline float-end fw-light">
           <img
-            class="d-inline align-baseline"
+            class="d-inline align-baseline fw-light"
             src="https://res.cloudinary.com/dbkdxsoia/image/upload/v1662231684/YelpCamp/star-svgrepo-com_gxflaa.svg"
             alt="star icon"
             width="12"
@@ -56,26 +56,30 @@
           <% if (campground.rating === 0){ %>
           <p class="d-inline">new</p>
           <% } else { %>
-          <div class="d-inline"><%= campground.rating %></div>
+          <div class="d-inline fw-light"><%= campground.rating %></div>
           <br />
           <% } %>
         </div>
         <!-- Location -->
-        <h6 class="card-subtitle mb-2 mt-2 text-muted">
+        <h6 class="card-subtitle mb-1 mt-1 text-muted fs-6 fw-light">
           <%= campground.location %>
         </h6>
         <!-- Price -->
-        <p class="card-text">
-          <small class="text-muted"
-            ><b><%= campground.price %> CHF</b> / per night
+        <p class="card-text text-muted fs-6 fw-light pt-1">
+          <small
+            ><span class="border-bottom"
+              ><%= campground.price %> CHF / per night</span
+            >
           </small>
         </p>
       </div>
-      <div class="card-footer">
+      <!--
+      <div class="card-footer main-crd-footer">
         <small class="text-muted"
           >Submitted by: <%= campground.author.username %></small
         >
       </div>
+      -->
     </div>
   </div>
   <% } %>
@@ -96,7 +100,7 @@
         type="button"
         class="btn btn-dark btn-lg rounded-pill shadow-lg px-4 py-2"
       >
-        Show map
+        <small>Show map</small>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

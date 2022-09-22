@@ -66,7 +66,7 @@
       <div class="card-body">
         <div class="mb-3">
         <!-- Title-->
-        <h5 class="d-inline card-title"><%= campground.title %></h5>
+        <h5 class="d-inline card-title fs-5"><%= campground.title %></h5>
         <!-- Rating -->
         <div class="d-inline float-end">
         <img
@@ -78,17 +78,17 @@
         />
           <!-- If no ratings display new  else display rating-->
           <% if (campground.rating === 0){ %>
-          <p class="d-inline">new</p>
+          <p class="d-inline fs-6">new</p>
           <% } else { %>
-          <div class="d-inline"><%= campground.rating %></div>
-          <div class="d-inline text-muted fw-light">&bull; <%= campground.reviews.length %> reviews</div>
+          <div class="d-inline fs-6"><%= campground.rating %></div>
+          <div class="d-inline text-muted fs-6 fw-light">&bull; <%= campground.reviews.length %> reviews</div>
 
           <br />
           <% } %>
           </div>
         </div>
         <!-- Description -->
-        <p class="card-text"><%= campground.description %></p>
+        <p class="card-text fs-6"><%= campground.description %></p>
       </div>
       <ul class="list-group list-group-flush">
         <!-- Location -->
@@ -142,7 +142,7 @@
       </div>
       <% } %>
       <!-- Footer -->
-      <div class="card-footer text-muted">Created at: <%= campground.updatedAt.toDateString() %> </div>
+      <div class="card-footer text-muted fs-6 fw-light">Created at: <%= campground.updatedAt.toDateString() %> </div>
   </div>
   </div>
   <div class="col">
@@ -153,14 +153,14 @@
     <!-- Right Coulmn -->
     <div style="border: none;" class="card mb-3">
       <div class="row row-cols-1 row-cols-xl-2 g-3 mb-3">
-        <!-- Left -->
+        <!-- Top Left -->
         <div class="col col-xl-6">
           <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body shadow">
 
               <!-- Price and Rating -->
               <div class="mb-3">
-                <p class="d-inline card-text"><%= campground.price %> CHF / night</p>
+                <p class="d-inline card-text fs-6"><%= campground.price %> CHF / night</p>
                 <div class="d-inline float-end">
                   <img
                     class="d-inline align-baseline"
@@ -171,10 +171,10 @@
                   />
                   <!-- If no ratings display new  else display rating-->
                   <% if (campground.rating === 0){ %>
-                  <p class="d-inline">new</p>
+                  <p class="d-inline fs-6">new</p>
                   <% } else { %>
-                  <div class="d-inline"><%= campground.rating %></div>
-                  <div class="d-inline text-muted fw-light">
+                  <div class="d-inline fs-6"><%= campground.rating %></div>
+                  <div class="d-inline text-muted fs-6 fw-light">
                     &bull; <%= campground.reviews.length %> reviews
                   </div>
                   <br />
@@ -183,7 +183,7 @@
               </div>
 
               <!-- Date -->
-              <div class="card mb-3">
+              <div id="dateInput" class="card mb-3">
                 <div class="d-inline">
                   <div class="form-floating border-bottom">
                     <input
@@ -193,7 +193,7 @@
                       type="date"
                       style="border: none; font-size: small"
                     />
-                    <label for="floatingInputGrid">Check In</label>
+                    <label for="floatingInputGrid"><span class="fw-bold">Check In</span></label>
                     <span id="startDateSelected"></span>
                   </div>
                 </div>
@@ -206,27 +206,26 @@
                       type="date"
                       style="border: none; font-size: small"
                     />
-                    <label for="floatingInputGrid">Check Out</label>
+                    <label for="floatingInputGrid"><span class="fw-bold">Check Out</span></label>
                     <span id="endDateSelected"></span>
                   </div>
                 </div>
               </div>
 
               <!-- Guest -->
-                <div class="form-floating mb-3">
+                <div id="guestInput" class="form-floating mb-3">
                   <select
                     class="form-select"
                     aria-label="Default select example"
                     id="floatingInputGrid"
                   >
-                  <option selected>1 Guest</option>
-                  <option value="1">1 Guests</option>
+                  <option value="1" selected>1 Guests</option>
                   <option value="2">2 Guests</option>
                   <option value="3">3 Guests</option>
                   <option value="4">4 Guests</option>
                   <option value="5">5 Guests</option>
                   </select>
-                  <label for="floatingInputGrid">Guests</label>
+                  <label for="floatingInputGrid"><span class="fw-bold">Guests</span></label>
                 </div>
 
               <!-- Cancelatin policy
@@ -279,9 +278,10 @@
                   Book now!
                   </button>
                   <div class="text-center text-black-50">
-                    <p class="mb-0">
+                    <p class="mb-0 fw-light">
                       <small>You won't be charged yet!</small>
                     </p>
+                    <p id="daysNum"></p>
                   </div>
                 </div>
 
@@ -468,7 +468,7 @@
               action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
               method="POST"
             >
-              <button class="btn btn-sm btn-light shadow-sm btn-gray">
+              <button class="btn btn-sm btn-light btn-gray">
                 Delete
                 <svg style="vertical-align: -0.125em;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 ms-2" viewBox="0 0 16 16">
                   <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
@@ -486,7 +486,16 @@
 </div>
 
 <script>
-  const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
+  //set check in input to current date
+
+  const today = new Date();
+  document.getElementById('startDate').valueAsDate = today;
+  //set check out input for tomorrow
+  let tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  document.getElementById('endDate').valueAsDate =  tomorrow;
+  
+  const mapToken = `<%-process.env.MAPBOX_TOKEN%>`;
   const campground = <%- JSON.stringify(campground) %>;
 </script>
 <script src="/javascripts/showPageMap.js"></script>

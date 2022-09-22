@@ -21,10 +21,10 @@
 .search-box {
   position: absolute;
   z-index: 3000;
-  width: 300px;
+  width: 200px;
   left: 0;
   right: 0;
-  top: 13px;
+  top: 20px;
   margin: auto;
   height: 40px;
   background-color: white;
@@ -37,16 +37,23 @@
 }
 
 .round-search-btn {
+  width: 20px;
   height: 38px;
   padding-left: 20px;
   padding-right: 20px;
   margin-right: -19px;
+  color: white;
   background-color: var(--btn-background-color-light);
   border-radius: 20px;
   border: 1px solid var(--btn-background-color-light);
   display: flex;
   align-items: center;
 }
+
+.search-large {
+  display: none;
+}
+
 .round-search-btn:hover {
   background-color: var(--btn-background-color-dark);
   border: 1px solid var(--btn-border-color);
@@ -87,6 +94,24 @@
   border: none;
 }
 
+.main-crd-footer {
+  background-color: white !important;
+}
+
+.btnTagActive:hover {
+  font-weight: 700;
+  border: none;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+#secondNav {
+  display: none;
+  border-top: none;
+}
+
 @media (min-width: 992px) {
   .register-btn {
     background-color: #ffc107;
@@ -116,5 +141,26 @@
     border-radius: 20px;
     border: 1px solid var(--btn-border-color);
     padding: 20px;
+  }
+
+  .round-search-btn {
+    width: 100px;
+    height: 38px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: -19px;
+    background-color: var(--btn-background-color-light);
+    border-radius: 20px;
+    border: 1px solid var(--btn-background-color-light);
+    display: flex;
+    color: gray;
+    align-items: center;
+  }
+
+  .search-small {
+    display: none;
+  }
+  .search-large {
+    display: inline;
   }
 }

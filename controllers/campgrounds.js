@@ -3,35 +3,51 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
+const { populate } = require("../models/campground");
 
 module.exports.index = async (req, res, next) => {
+  // if search
   if (req.query.search) {
     const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    console.log(regex);
-    const campgrounds = await Campground.find({
-      $or: [{ title: regex }, { location: regex }],
-    })
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
+    const campgrounds = await populateCamp(
+      Campground.find({
+        $or: [{ title: regex }, { location: regex }],
       })
-      .populate("author");
+    );
     if (campgrounds.length < 1) {
       req.flash("error", "No campgrounds found, please try again.");
       res.redirect("back");
     }
     res.render("campgrounds/index", { campgrounds });
+    // sorting highest rated
+  } else if (req.query.sortby === "higestRated") {
+    const campgrounds = await populateCamp(
+      Campground.find({}).sort({ rating: -1 })
+    );
+    res.render("campgrounds/index", { campgrounds });
+    //sorting lowest price
+  } else if (req.query.sortby === "lowestPrice") {
+    const campgrounds = await populateCamp(
+      Campground.find({}).sort({ price: 1 })
+    );
+    res.render("campgrounds/index", { campgrounds });
+    //sorting highest price
+  } else if (req.query.sortby === "highestPrice") {
+    const campgrounds = await populateCamp(
+      Campground.find({}).sort({ price: -1 })
+    );
+    res.render("campgrounds/index", { campgrounds });
+    //clear sorting or no query
+  } else if (req.query.sortby === "clear" || !req.query.sortby) {
+    const campgrounds = await populateCamp(Campground.find({}));
+    res.render("campgrounds/index", { campgrounds });
+    //find by tag
   } else {
-    const campgrounds = await Campground.find({})
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
+    const campgrounds = await populateCamp(
+      Campground.find({
+        tag: { $in: [req.query.sortby] },
       })
-      .populate("author");
+    );
     res.render("campgrounds/index", { campgrounds });
   }
 };
@@ -55,7 +71,6 @@ module.exports.createCampground = async (req, res, next) => {
   }));
   campground.author = req.user._id;
   await campground.save();
-  console.log(campground);
   req.flash("success", "Succesfully made a new campground!");
   res.redirect(`/campgrounds/${campground._id}`);
 };
@@ -92,7 +107,6 @@ module.exports.renderEditForm = async (req, res, next) => {
 };
 
 module.exports.updateCampground = async (req, res, next) => {
-  console.log(req.body);
   const campground = await Campground.findByIdAndUpdate(req.params.id, {
     ...req.body.campground,
   });
@@ -109,7 +123,6 @@ module.exports.updateCampground = async (req, res, next) => {
     await campground.updateOne({
       $pull: { images: { filename: { $in: req.body.deleteImages } } },
     });
-    console.log(campground);
   }
   req.flash("success", "Succesfully updated campground!");
   res.redirect(`/campgrounds/${campground._id}`);
@@ -123,4 +136,15 @@ module.exports.deleteCampground = async (req, res, next) => {
 
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+function populateCamp(campground) {
+  return campground
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "author",
+      },
+    })
+    .populate("author");
 }

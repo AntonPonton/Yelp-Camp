@@ -610,7 +610,9 @@
 
 <script>
   let url = window.location.href;
-  let campgrounds = "http://localhost:3000/campgrounds";
+  let campgrounds =
+    "http://localhost:3000/campgrounds" ||
+    "https://calm-lowlands-59490.herokuapp.com/campgrounds";
   //add secondNav to all variation of index page only
   window.addEventListener("load", () => {
     if (

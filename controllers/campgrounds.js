@@ -16,7 +16,7 @@ module.exports.index = async (req, res, next) => {
     );
     if (campgrounds.length < 1) {
       req.flash("error", "No campgrounds found, please try again.");
-      res.redirect("back");
+      return res.redirect("/campgrounds");
     }
     res.render("campgrounds/index", { campgrounds });
     // sorting highest rated

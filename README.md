@@ -25,7 +25,7 @@ The fun part was also to redesign the layout and implement some additional featu
 
 * Model-View-Controller (MVC) pattern - architecture of the app.
 * Node.js + Express - backend framework for RESTful routes.
-* Embedded Javascript Templates (EJS) - for dynamic HTML tamplating.
+* Embedded Javascript Templates (EJS) - for dynamic HTML templating.
 * MongoDB Atlas - cloud-based NoSQL database.
 * Bootstrap 5 - CSS framework for styling.
 * PassportJs - for the authentication and authorization.
